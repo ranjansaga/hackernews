@@ -14,29 +14,25 @@ class News extends React.Component {
     const rows = this.props.newsList && this.props.newsList.map((news, index) => {
       return (
         <tr key={index}>
-          <td> {news.num_comments} </td>
-          <td> {news.voteCount} </td>
+          <td>{news.num_comments}</td>
+          <td>{news.voteCount}</td>
           <td><FontAwesomeIcon icon={faCaretUp} /></td>
           <td>{news.title}</td>
         </tr>
       )
     });
     return (
-      <div>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Comments</th>
-              <th>Vote Count</th>
-              <th>UpVote</th>
-              <th>News Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
-      </div>
+      <table className="table table-striped news-table">
+        <thead>
+          <tr>
+            <th>Comments</th>
+            <th>Vote Count</th>
+            <th>UpVote</th>
+            <th>News Details</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
     );
   }
 }
@@ -46,3 +42,5 @@ export default News;
 News.propTypes = {
   newsList: PropTypes.array
 };
+
+

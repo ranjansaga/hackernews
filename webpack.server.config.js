@@ -40,7 +40,7 @@ module.exports = (env, argv) => {
           use: {
             loader: "babel-loader"
           }
-        }
+        },
       ]
     }
   })
