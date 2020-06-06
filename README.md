@@ -1,4 +1,4 @@
-# Rexpack
+# Hackernews - Rexpack
 
 Rexpack is a minimal Express, Webpack, & React boilerplate app that serves an image, adds some styling and some basic functionality, just to show everything working at the most basic level. This project can then be used as a template for other more complex apps.
 
