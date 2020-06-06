@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import App from '../components/App';
 import fs from 'fs';
-const fetch = require("node-fetch");
+import fetch from 'isomorphic-fetch';
 
 const app = express(),
   DIST_DIR = __dirname,
@@ -16,7 +16,7 @@ app.use(express.static(DIST_DIR))
 
 app.get('*', (req, res, next) => {
   console.log('reached here --->');
-  const url = 'https://hn.algoli2a.com/api/v1/search?tags=front_page';
+  const url = 'http://hn.algolia.com/api/v1/search?tags=front_page';
   fetch(url, {
     method: 'GET',
     headers: {
@@ -39,6 +39,8 @@ app.get('*', (req, res, next) => {
         })
       });
     }
+  }).catch((e) => {
+    console.log('error', e);
   });
 });
 

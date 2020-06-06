@@ -19,7 +19,9 @@
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
+    "es6-promise": "^4.2.8",
     "express": "^4.16.4",
+    "isomorphic-fetch": "^2.2.1",
     "node-fetch": "^2.6.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"

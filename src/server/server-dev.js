@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import App from '../components/App';
 import fs from 'fs';
-const fetch = require("node-fetch");
+import fetch from 'isomorphic-fetch';
 
 
 const app = express(),

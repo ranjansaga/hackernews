@@ -1,6 +1,7 @@
 import React from 'react';
 import News from './News/News';
 import PropTypes from 'prop-types';
+import fetch from 'isomorphic-fetch';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +24,8 @@ class App extends React.Component {
           this.setState({newsList: data.hits})
         });
       }
+    }).catch((e) => {
+      console.log('error', e);
     });
   }
 
