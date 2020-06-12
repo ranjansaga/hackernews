@@ -16,7 +16,7 @@ class News extends React.Component {
         <tr key={index}>
           <td>{news.num_comments}</td>
           <td>{news.voteCount}</td>
-          <td><FontAwesomeIcon icon={faCaretUp} /></td>
+          <td onClick={()=>{this.props.updateVoteCount(index, news)}}><FontAwesomeIcon icon={faCaretUp} /></td>
           <td>{news.title}</td>
         </tr>
       )
@@ -40,7 +40,8 @@ class News extends React.Component {
 export default News;
 
 News.propTypes = {
-  newsList: PropTypes.array
+  newsList: PropTypes.array,
+  updateVoteCount: PropTypes.func
 };
 
 
