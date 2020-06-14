@@ -22,23 +22,26 @@ class App extends React.Component {
         response.json().then(data => {
           console.log(data);
           if (typeof window !== 'undefined') {
-            const voteCountListCopy = JSON.parse(window.localStorage.getItem('voteCountList')) || [];
-            console.log('voteCountListCopy', voteCountListCopy);
-            if (voteCountListCopy.length) {
+            const voteCountDictCopy = JSON.parse(window.localStorage.getItem('voteCountList')) || {};
+            console.log('voteCountDictCopy', voteCountDictCopy);
+            if (Object.keys(voteCountDictCopy).length) {
               console.log('inside if case ')
               data.hits && data.hits.map((news, i) => {
-                console.log('voteCountListCopy[news.objectID]',news.objectID, voteCountListCopy[news.objectID]);
-                news.voteCount = voteCountListCopy[i][news.objectID];
+                console.log('news.objectID', news.objectID);
+
+                if (voteCountDictCopy.hasOwnProperty(news.objectID)) {
+                  news.voteCount = voteCountDictCopy[news.objectID];
+                } else {
+                  news.voteCount = 0;
+                }
               });
             } else {
               console.log('inside else case ')
               data.hits && data.hits.map((news) => {
-                const objid = {}
-                objid[news.objectID] = 0;
-                voteCountListCopy.push(objid);
-                console.log('voteCountListCopy', voteCountListCopy);
+                voteCountDictCopy[news.objectID] = 0;
+                console.log('voteCountDictCopy', voteCountDictCopy);
                 news.voteCount = 0;
-                window.localStorage.setItem('voteCountList', JSON.stringify(voteCountListCopy));
+                window.localStorage.setItem('voteCountList', JSON.stringify(voteCountDictCopy));
               });
             }
           }
@@ -55,12 +58,12 @@ class App extends React.Component {
   updateVoteCount = (index, news) => {
     console.log('index', news);
     const newsListCopy = this.state.newsList;
-    console.log('newsListCopy[index][objId]', newsListCopy[index].voteCount);
     newsListCopy[index].voteCount = parseInt(newsListCopy[index].voteCount) + 1;
-    this.setState({newsList: newsListCopy});
-    const voteCountListCopy = JSON.parse(window.localStorage.getItem('voteCountList'));
-    voteCountListCopy[news.objectID] = parseInt(voteCountListCopy[index].voteCount) + 1;
-    window.localStorage.setItem('voteCountList', JSON.stringify(voteCountListCopy));
+    this.setState({ newsList: newsListCopy });
+    const voteCountDictCopy = JSON.parse(window.localStorage.getItem('voteCountList'));
+    voteCountDictCopy[news.objectID] = parseInt(voteCountDictCopy[news.objectID]) + 1;
+    console.log('voteCountDictCopy after update ', voteCountDictCopy );
+    window.localStorage.setItem('voteCountList', JSON.stringify(voteCountDictCopy));
   };
 
   render() {
