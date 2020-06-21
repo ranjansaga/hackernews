@@ -14,7 +14,7 @@ const app = express(),
 
 app.use(express.static(DIST_DIR))
 
-app.get('/', (req, res, next) => {
+app.get('/news', (req, res, next) => {
   console.log('reached here --->');
   const url = 'http://hn.algolia.com/api/v1/search?tags=front_page';
   fetch(url, {
